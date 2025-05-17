@@ -12,9 +12,12 @@ import (
 
 func TestXxx(t *testing.T) {
 	mcpClient, err := client.NewStdioMCPClient(
-		"go run \"/Users/mklin/Desktop/mk_docs/mcp_server/main.go\"",
+		"/Users/mklin/Desktop/mk_docs/mcp_server/output/mcp_server",
 		[]string{},
 	)
+	// mcpClient, err := client.NewSSEMCPClient(
+	// 	"localhost:8080",
+	// )
 	if err != nil {
 		panic(err)
 	}
