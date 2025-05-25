@@ -74,11 +74,11 @@ func TestXxx(t *testing.T) {
 			Method: "tools/call",
 		},
 	}
-	toolRequest.Params.Name = "calculate"
+	toolRequest.Params.Name = "GetWeather"
 	toolRequest.Params.Arguments = map[string]any{
-		"operation": "add",
-		"x":         1,
-		"y":         1,
+		"city": "广州",
+		"date": "25/01/01 ",
+		"y":    1,
 	}
 
 	result, err := mcpClient.CallTool(ctx, toolRequest)

@@ -6,11 +6,14 @@ import (
 	"fmt"
 	"os"
 
+	"example.com/mod/tools/clothing"
+	"example.com/mod/tools/weather"
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 )
 
 func main() {
+	ctx := context.Background()
 	s := server.NewMCPServer(
 		"Server Demo",
 		"1.0.0",
@@ -54,6 +57,14 @@ func main() {
 
 		return mcp.FormatNumberResult(result), nil
 	})
+	mkClothes := clothing.NewMkClothes(ctx)
+	for toolName, tool := range mkClothes.ToolMap {
+		s.AddTool(tool, mkClothes.ToolHandlerMap[toolName])
+	}
+	mkWeather := weather.NewMkWeather(ctx)
+	for toolName, tool := range mkWeather.ToolMap {
+		s.AddTool(tool, mkWeather.ToolHandlerMap[toolName])
+	}
 
 	resource := mcp.NewResource(
 		"docs://readme",
